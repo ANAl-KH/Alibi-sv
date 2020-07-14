@@ -1,4 +1,4 @@
-package com.example.alibi3
+package com.example.alibisv2
 
 import io.flutter.embedding.android.FlutterActivity
 
