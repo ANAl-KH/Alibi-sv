@@ -8,19 +8,23 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+    with AutomaticKeepAliveClientMixin {
   double lat = 51.507;
   double lng = -0.128;
-  int _currentIndex = 0;
-//  void getgps() async {
-//    var latlng = await Gps.currentGps();
-//    setState(() {
-//      lat = double.parse(latlng.lat);
-//      lng = double.parse(latlng.lng);
-//    });
-//    print(latlng.lng);
-//    print(latlng);
-//  }
+  void getgps() async {
+    var latlng = await Gps.currentGps();
+    setState(() {
+      lat = double.parse(latlng.lat);
+      lng = double.parse(latlng.lng);
+    });
+  }
+
+  @override
+  void initState() {
+    getgps();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +32,10 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          //  Padding(
-          //    padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-          //    child: Text('234234234234234234234'),
-          //  ),
           Flexible(
             child: FlutterMap(
               options: MapOptions(
-                center: LatLng(51.5, -0.09),
+                center: LatLng(lat, lng),
                 zoom: 13.0,
               ),
               layers: [
@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                     Marker(
                       width: 80.0,
                       height: 80.0,
-                      point: LatLng(51.5, -0.09),
+                      point: LatLng(lat, lng),
                       builder: (ctx) => Container(
                         child: FlutterLogo(),
                       ),
@@ -77,4 +77,7 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
