@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
 import 'package:gps/gps.dart';
+//import 'dart:async';
 
 class HomePage extends StatefulWidget {
   @override
@@ -29,6 +30,7 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     //  getgps();
+    print('1次');
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -68,5 +70,5 @@ class _HomePageState extends State<HomePage>
   }
 
   @override
-  bool get wantKeepAlive => true;
+  bool get wantKeepAlive => false;
 }
