@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'homepage.dart';
+import 'bottombar.dart';
 
 void main() => runApp(MaterialApp(
-      home: HomePage(),
+      home: BottomNavigationWidget(),
     ));
