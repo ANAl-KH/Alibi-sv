@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
 import 'package:gps/gps.dart';
-//import 'dart:async';
+import 'dart:async';
 
 class HomePage extends StatefulWidget {
   @override
@@ -11,33 +11,52 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin {
-  double lat = 51.507;
-  double lng = -0.128;
+  double lat = -31.4641241;
+  double lng = 152.5380176;
+  MapController mapController;
+
   void getgps() async {
     var latlng = await Gps.currentGps();
-    setState(() {
-      lat = double.parse(latlng.lat);
-      lng = double.parse(latlng.lng);
+    mapController.move(
+        LatLng(double.parse(latlng.lat), double.parse(latlng.lng)), 13);
+    if (mounted) {
+      setState(() {
+        lat = double.parse(latlng.lat);
+        lng = double.parse(latlng.lng);
+      });
+    }
+  }
+
+  void updatelatlng() {
+    Timer(Duration(seconds: 10), () {
+      getgps();
     });
+    // Timer.periodic(Duration(minutes: 1), (timer) {
+    //   getgps();
+    //  });
   }
 
   @override
   void initState() {
     getgps();
     super.initState();
+    mapController = MapController();
   }
 
   @override
   Widget build(BuildContext context) {
-    //  getgps();
-    print('1次');
+    updatelatlng();
+    //getgps();
+    //  lat == null ? getgps() : updatelatlng();
+    print(LatLng);
     return Scaffold(
       body: Column(
         children: <Widget>[
           Flexible(
             child: FlutterMap(
+              mapController: mapController,
               options: MapOptions(
-                center: LatLng(lat, lng),
+                center: LatLng(-31.4641241, 152.5380176),
                 zoom: 13.0,
               ),
               layers: [
@@ -70,5 +89,5 @@ class _HomePageState extends State<HomePage>
   }
 
   @override
-  bool get wantKeepAlive => false;
+  bool get wantKeepAlive => true;
 }
