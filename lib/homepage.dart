@@ -11,8 +11,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin {
-  double lat = -31.4641241;
-  double lng = 152.5380176;
+  double lat;
+  double lng;
   MapController mapController;
 
   void getgps() async {
@@ -37,22 +37,28 @@ class _HomePageState extends State<HomePage>
   }
 
   @override
+  bool get wantKeepAlive => true;
+
+  @override
   void initState() {
     getgps();
+    print('init一次');
     super.initState();
     mapController = MapController();
   }
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     updatelatlng();
     //getgps();
     //  lat == null ? getgps() : updatelatlng();
-    print(LatLng);
+    print('build一次');
     return Scaffold(
       body: Column(
         children: <Widget>[
           Flexible(
+            flex: 1,
             child: FlutterMap(
               mapController: mapController,
               options: MapOptions(
@@ -79,15 +85,12 @@ class _HomePageState extends State<HomePage>
               ],
             ),
           ),
-          Text('sdfsdfsdfsdf'),
-          Text('sdfsdfsdfsdf'),
-          Text('sdfsdfsdfsdf'),
-          Text('sdfsdfsdfsdf'),
+          Flexible(
+            flex: 1,
+            Text('sdfsdfsdfsdf'),
+          ),
         ],
       ),
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }
