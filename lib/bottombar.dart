@@ -1,5 +1,6 @@
+/*
 import 'package:alibisv2/alibipage.dart';
-import 'package:alibisv2/homepage.dart';
+import 'package:alibisv2/homepageabandon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -46,3 +47,4 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget>
   @override
   bool get wantKeepAlive => true;
 }
+*/

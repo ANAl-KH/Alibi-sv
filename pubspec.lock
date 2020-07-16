@@ -85,6 +85,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.1.4"
+  csv:
+    dependency: transitive
+    description:
+      name: csv
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "4.0.3"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -125,18 +132,18 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.10.1"
-  flutter_spinkit:
-    dependency: "direct main"
-    description:
-      name: flutter_spinkit
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "4.1.2+1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
     source: sdk
     version: "0.0.0"
+  geocoder_offline:
+    dependency: "direct main"
+    description:
+      name: geocoder_offline
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.1.4"
   gps:
     dependency: "direct main"
     description:
@@ -172,6 +179,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.16.1"
+  kdtree:
+    dependency: transitive
+    description:
+      name: kdtree
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.0.2"
   latlong:
     dependency: "direct main"
     description:
