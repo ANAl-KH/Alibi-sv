@@ -1,3 +1,5 @@
+//底部导航栏
+
 import 'package:flutter/material.dart';
 import 'alibilistpage.dart';
 import 'switchbuttonpage.dart';
@@ -18,7 +20,6 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
-    print('homepage init');
     _currentIndex = 0;
     _controllerList = [
       SwitchPage(),

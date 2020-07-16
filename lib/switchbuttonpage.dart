@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'gpsinfo.dart';
-import 'package:latlong/latlong.dart';
 import 'package:gps/gps.dart';
 import 'dart:async';
+import 'creatalibi.dart';
 
 class SwitchPage extends StatefulWidget {
   @override
@@ -14,13 +14,10 @@ class _SwitchPageState extends State<SwitchPage> {
 
   void getgps() async {
     var latlng = await Gps.currentGps();
-    //double lat = double.parse(latlng.lat);
-    //double lng = double.parse(latlng.lng);
-    print(latlng.lat);
-    print(latlng.lng);
     gpsKey.currentState.refreshgps(latlng.lat, latlng.lng);
   }
 
+//每6秒刷新一次当前gps位置信息，用GlobalKey实现了局部刷新
   void refreshtimer() {
     Timer.periodic(Duration(seconds: 6), (timer) {
       getgps();
@@ -35,6 +32,7 @@ class _SwitchPageState extends State<SwitchPage> {
       body: Column(
         children: <Widget>[
           GpsInfo(gpsKey),
+          CreateAlibi(),
         ],
       ),
     );
