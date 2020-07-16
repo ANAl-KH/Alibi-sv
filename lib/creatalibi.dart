@@ -13,7 +13,7 @@ class _CreateAlibiState extends State<CreateAlibi> {
     var latlng = await Gps.currentGps();
     var alibitime = DateTime.now();
     var alibiutctime = alibitime.millisecondsSinceEpoch;
-    var randomkey = Random();
+    var randomkey = Random().toString();
     print(randomkey);
     print(alibitime);
     print(alibiutctime);
