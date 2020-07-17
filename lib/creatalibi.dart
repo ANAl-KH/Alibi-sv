@@ -38,14 +38,10 @@ class _CreateAlibiState extends State<CreateAlibi> {
           },
           body: jsonbody);
       //  if respose['code']
-      print(randomkey);
       print(alibitime);
-      print(alibiutctime);
       print(latlng.lat);
       print(latlng.lng);
       print(alibihash);
-      print(allinfo);
-      print(response);
       print(json.decode(response.body));
     } catch (e) {
       print('获取alibi失败');
