@@ -17,7 +17,7 @@ class _SwitchPageState extends State<SwitchPage> {
       var latlng = await Gps.currentGps();
       gpsKey.currentState.refreshgps(latlng.lat, latlng.lng);
     } catch (e) {
-      print('gps获取失败');
+      print('gps信息获取失败');
     }
   }
 
