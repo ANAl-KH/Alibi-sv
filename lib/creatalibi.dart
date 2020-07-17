@@ -46,6 +46,7 @@ class _CreateAlibiState extends State<CreateAlibi> {
       print(alibihash);
       print(allinfo);
       print(response);
+      print(json.decode(response.body));
     } catch (e) {
       print('获取alibi失败');
     }
