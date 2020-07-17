@@ -13,8 +13,12 @@ class _SwitchPageState extends State<SwitchPage> {
   GlobalKey<GpsInfoState> gpsKey = GlobalKey();
 
   void getgps() async {
-    var latlng = await Gps.currentGps();
-    gpsKey.currentState.refreshgps(latlng.lat, latlng.lng);
+    try {
+      var latlng = await Gps.currentGps();
+      gpsKey.currentState.refreshgps(latlng.lat, latlng.lng);
+    } catch (e) {
+      print('gps获取失败');
+    }
   }
 
 //每6秒刷新一次当前gps位置信息，用GlobalKey实现了局部刷新

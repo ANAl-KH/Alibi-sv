@@ -14,9 +14,10 @@ dependencies:
   flutter_map: ^0.10.1
   latlong: ^0.6.1
   gps: ^0.1.1
-  geocoder_offline: ^0.1.4
   android_alarm_manager: ^0.4.5+11
   crypto: ^2.1.4
+  flutter_plugin_android_lifecycle: ^1.0.8
+  http: ^0.12.2
 
 dev_dependencies:
   flutter_test:
