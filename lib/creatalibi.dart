@@ -12,10 +12,6 @@ class CreateAlibi extends StatefulWidget {
 
 class _CreateAlibiState extends State<CreateAlibi> {
   final url = 'https://www.ddpurse.com/platform/openapi/v2/push_chain_data';
-  final Map headers = {
-    'appid': '70083476d49f695d62ba67e707d5b6eb',
-    'appsecret': 'ac75ab1021b4d2a874314cc084e28635'
-  };
   //用一个随机数作为盐，用Hmac_sha256算出pgs加时间的哈希值，调用打点钱包的接口把这个哈希值上链
   //todo:等上链成功后拿到接口返回的txid，把txid和gps等信息存起来显示在alibipage页。
   void getalibi() async {
@@ -32,7 +28,15 @@ class _CreateAlibiState extends State<CreateAlibi> {
           alibiutctime);
       var hmacSha256 = Hmac(sha256, randomkey);
       var alibihash = hmacSha256.convert(allinfo);
-      var response = await http.post(url, headers: headers, body: alibihash);
+      Map mapbody = {"coin_type": "BSV", "data": "$alibihash", "data_type": 0};
+      var jsonbody = json.encode(mapbody);
+      var response = await http.post(url,
+          headers: {
+            'Content-Type': 'application/json',
+            'appid': '70083476d49f695d62ba67e707d5b6eb',
+            'appsecret': 'ac75ab1021b4d2a874314cc084e28635'
+          },
+          body: jsonbody);
       //  if respose['code']
       print(randomkey);
       print(alibitime);
