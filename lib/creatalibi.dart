@@ -12,7 +12,7 @@ class CreateAlibi extends StatefulWidget {
 
 class _CreateAlibiState extends State<CreateAlibi> {
   final url = 'https://www.ddpurse.com/platform/openapi/v2/push_chain_data';
-  final headers = {
+  final Map headers = {
     'appid': '70083476d49f695d62ba67e707d5b6eb',
     'appsecret': 'ac75ab1021b4d2a874314cc084e28635'
   };
@@ -33,7 +33,7 @@ class _CreateAlibiState extends State<CreateAlibi> {
       var hmacSha256 = Hmac(sha256, randomkey);
       var alibihash = hmacSha256.convert(allinfo);
       var response = await http.post(url, headers: headers, body: alibihash);
-      if respose['code']
+      //  if respose['code']
       print(randomkey);
       print(alibitime);
       print(alibiutctime);
