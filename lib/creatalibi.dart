@@ -16,7 +16,8 @@ class _CreateAlibiState extends State<CreateAlibi> {
     'appid': '70083476d49f695d62ba67e707d5b6eb',
     'appsecret': 'ac75ab1021b4d2a874314cc084e28635'
   };
-  //用一个随机数作为盐，用Hmac_sha256算出pgs加时间的哈希值
+  //用一个随机数作为盐，用Hmac_sha256算出pgs加时间的哈希值，调用打点钱包的接口把这个哈希值上链
+  //todo:等上链成功后拿到接口返回的txid，把txid和gps等信息存起来显示在alibipage页。
   void getalibi() async {
     try {
       var latlng = await Gps.currentGps();
