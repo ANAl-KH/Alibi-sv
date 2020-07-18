@@ -5,6 +5,7 @@ import 'dart:math';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'resjsonmodel.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CreateAlibi extends StatefulWidget {
   @override
@@ -19,8 +20,7 @@ class _CreateAlibiState extends State<CreateAlibi> {
     try {
       var latlng = await Gps.currentGps();
       var alibitime = DateTime.now();
-      var alibiutctimeint = alibitime.millisecondsSinceEpoch;
-      var alibiutctimestr = alibiutctimeint.toString();
+      var alibiutctimestr = alibitime.millisecondsSinceEpoch.toString();
       var randomkey = utf8.encode(Random().nextInt(4294967296).toString());
       var allinfo = utf8.encode('latitude' +
           latlng.lat +
@@ -49,6 +49,7 @@ class _CreateAlibiState extends State<CreateAlibi> {
       print(alibihash);
       print(json.decode(response.body));
       if (dotres.code == 0) {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
         Map rawalibi = {
           "utc": "$alibiutctimestr",
           "latitude": "${latlng.lat}",
@@ -56,7 +57,7 @@ class _CreateAlibiState extends State<CreateAlibi> {
           "saltkey": "$randomkey",
           "txid": "${dotres.data.txid}"
         };
-        print(rawalibi);
+        prefs.setString(alibiutctimestr, rawalibi.toString());
       }
     } catch (e) {
       print('获取alibi失败');
