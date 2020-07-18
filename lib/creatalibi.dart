@@ -19,14 +19,15 @@ class _CreateAlibiState extends State<CreateAlibi> {
     try {
       var latlng = await Gps.currentGps();
       var alibitime = DateTime.now();
-      var alibiutctime = alibitime.millisecondsSinceEpoch.toString();
+      var alibiutctimeint = alibitime.millisecondsSinceEpoch;
+      var alibiutctimestr = alibiutctimeint.toString();
       var randomkey = utf8.encode(Random().nextInt(4294967296).toString());
       var allinfo = utf8.encode('latitude' +
           latlng.lat +
           'longitude' +
           latlng.lng +
           'UTCtime' +
-          alibiutctime);
+          alibiutctimestr);
       var hmacSha256 = Hmac(sha256, randomkey);
       var alibihash = hmacSha256.convert(allinfo);
       Map mapbody = {"coin_type": "BSV", "data": "$alibihash", "data_type": 0};
@@ -48,7 +49,14 @@ class _CreateAlibiState extends State<CreateAlibi> {
       print(alibihash);
       print(json.decode(response.body));
       if (dotres.code == 0) {
-        //上链成功，todo
+        Map rawalibi = {
+          "utc": "$alibiutctimestr",
+          "latitude": "${latlng.lat}",
+          "longitude": "${latlng.lng}",
+          "saltkey": "$randomkey",
+          "txid": "${dotres.data.txid}"
+        };
+        print(rawalibi);
       }
     } catch (e) {
       print('获取alibi失败');
