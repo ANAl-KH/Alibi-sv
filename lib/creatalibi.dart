@@ -50,7 +50,13 @@ class _CreateAlibiState extends State<CreateAlibi> {
       print(json.decode(response.body));
       if (dotres.code == 0) {
         SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setString(alibiutctimestr, dotres.data.txid);
+        String stralibi = "{\"utc\":\"$alibiutctimestr\"," +
+            "\"latitude\":\"${latlng.lat}\"," +
+            "\"longitude\":\"${latlng.lng}\"," +
+            "\"salt\":\"$randomkey\"," +
+            "\"txid\":\"${dotres.data.txid}\"";
+        print(stralibi);
+        prefs.setString(alibiutctimestr, stralibi);
       }
     } catch (e) {
       print('获取alibi失败');
