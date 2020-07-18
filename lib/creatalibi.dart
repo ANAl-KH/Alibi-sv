@@ -5,6 +5,7 @@ import 'dart:math';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'resjsonmodel.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CreateAlibi extends StatefulWidget {
   @override
@@ -48,17 +49,18 @@ class _CreateAlibiState extends State<CreateAlibi> {
       print(alibihash);
       print(json.decode(response.body));
       if (dotres.code == 0) {
-        Map rawalibi = {
-          "utc": "$alibiutctimestr",
-          "latitude": "${latlng.lat}",
-          "longitude": "${latlng.lng}",
-          "saltkey": "$randomkey",
-          "txid": "${dotres.data.txid}"
-        };
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setString(alibiutctimestr, dotres.data.txid);
       }
     } catch (e) {
       print('获取alibi失败');
     }
+  }
+
+  void readalibi() async {
+    final prefs = await SharedPreferences.getInstance();
+    final keys = prefs.getKeys();
+    print(keys);
   }
 
   @override
@@ -69,6 +71,10 @@ class _CreateAlibiState extends State<CreateAlibi> {
           getalibi();
         }),
         Text('点击按钮生成一个不在场证明'),
+        RaisedButton(onPressed: () {
+          readalibi();
+        }),
+        Text('点击按钮读取所有已存储的不在场证明'),
       ],
     );
   }
