@@ -4,6 +4,7 @@ import 'package:crypto/crypto.dart';
 import 'dart:math';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'resjsonmodel.dart';
 
 class CreateAlibi extends StatefulWidget {
   @override
@@ -37,12 +38,18 @@ class _CreateAlibiState extends State<CreateAlibi> {
             'appsecret': 'ac75ab1021b4d2a874314cc084e28635'
           },
           body: jsonbody);
-      //  if respose['code']
+      Map<String, dynamic> resmap = json.decode(response.body);
+      Dotres dotres = Dotres.fromJsom(resmap);
+      print(dotres.code);
+      print(dotres.data.txid);
       print(alibitime);
       print(latlng.lat);
       print(latlng.lng);
       print(alibihash);
       print(json.decode(response.body));
+      if (dotres.code == 0) {
+        //上链成功，todo
+      }
     } catch (e) {
       print('获取alibi失败');
     }
