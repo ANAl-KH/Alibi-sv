@@ -7,17 +7,17 @@ class ListPage extends StatefulWidget {
 }
 
 class _ListPageState extends State<ListPage> {
-  var alibilist = List();
+  var alibiset = Set();
   //遍历sharedpreference，把值存到list里
   void readalibi() async {
     final prefs = await SharedPreferences.getInstance();
     final keys = prefs.getKeys();
     keys.forEach((s) {
-      alibilist.add(prefs.get(s));
+      alibiset.add(prefs.get(s));
     });
     //prefs.clear();清理数据用
     print(keys);
-    print(alibilist);
+    print(alibiset);
   }
 
   @override
@@ -29,14 +29,14 @@ class _ListPageState extends State<ListPage> {
   @override
   Widget build(BuildContext context) {
     //readalibi();
-    print(alibilist);
+    print(alibiset);
     return Scaffold(
       body: RefreshIndicator(
         child: ListView.separated(
-          itemCount: alibilist.length,
+          itemCount: alibiset.length,
           itemBuilder: (context, index) {
             return Container(
-              child: Text('${alibilist[index]}'),
+              child: Text('alibi:${alibiset.toList()[index]}'),
             );
           },
           separatorBuilder: (context, index) {
