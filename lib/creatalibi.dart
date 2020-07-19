@@ -54,7 +54,7 @@ class _CreateAlibiState extends State<CreateAlibi> {
             "\"latitude\":\"${latlng.lat}\"," +
             "\"longitude\":\"${latlng.lng}\"," +
             "\"salt\":\"$randomkey\"," +
-            "\"txid\":\"${dotres.data.txid}\"";
+            "\"txid\":\"${dotres.data.txid}\"}";
         print(stralibi);
         prefs.setString(alibiutctimestr, stralibi);
       }
