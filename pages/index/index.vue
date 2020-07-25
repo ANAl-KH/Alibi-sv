@@ -98,7 +98,7 @@
 					},
 				});
 				console.log(txidData);
-				locationData.txid = txidData.data.data.tx_id
+				locationData.txid = txidData.data.data.txid
 				//本地存储
 				let testData = uni.getStorageSync('LocationDataList')
 				let pushData = [locationData, ...testData]

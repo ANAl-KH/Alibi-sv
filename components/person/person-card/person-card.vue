@@ -1,6 +1,10 @@
 <template>
 	<view class="g-person">
-		<view class="u-location-card" v-for="(item,index) in datalist" :key='item.times'  @tap="handlerClickCard(item)" v-if="datalist.length>0">
+		<view class="u-location-card" 
+		v-for="(item,index) in datalist" :key='item.times' 
+		@tap="handlerClickCard(item)" 
+		v-if="datalist.length>0"
+		@longtap="handlerLongtap(item)">
 			<view>
 				<view class="u-card-time">{{getLocalTimes(item.times)}}</view>
 				<view class="u-card-address">{{item.address.city+item.address.district+item.address.street+item.address.streetNum}}</view>
@@ -28,8 +32,11 @@
 			getLocalTimes(times) {
 				return new Date(times).toLocaleString()
 			},
-			handlerClickCard(item){
-				this.$emit('tapCard',item)
+			handlerClickCard(item) {
+				this.$emit('tapCard', item)
+			},
+			handlerLongtap(item){
+				this.$emit('LongTapCard', item)
 			}
 		}
 	}
@@ -68,8 +75,8 @@
 				display: -webkit-box;
 				line-clamp: 2;
 			}
-			
-			.u-card-time{
+
+			.u-card-time {
 				color: #82848a;
 				font-size: 50rpx;
 			}
