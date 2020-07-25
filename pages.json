@@ -1,0 +1,55 @@
+{
+	"easycom": {
+		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue",
+		"^person-(.*)": "components//person/person-$1/person-$1.vue"
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "记录位置信息", //设置页面标题文字
+				"navigationBarBackgroundColor": "#007AFF"
+			}
+		},
+		{
+			"path": "pages/person/person",
+			"style": {
+				"navigationBarTitleText": "信息记录", //设置页面标题文字
+				"enablePullDownRefresh": true, //开启下拉刷新
+				"navigationBarBackgroundColor": "#007AFF"
+			}
+		},
+		{
+			"path": "pages/person_detail/person_detail",
+			"style": {
+				"navigationBarTitleText": "记录详情", //设置页面标题文字
+				"enablePullDownRefresh": true, //开启下拉刷新
+				"navigationBarBackgroundColor": "#007AFF"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"color": "#707070",
+		"selectedColor": "#1296db",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"spacing": "10px",
+		"iconWidth": "24px",
+		"list": [{
+			"pagePath": "pages/index/index",
+			"iconPath": "static/image/up.png",
+			"selectedIconPath": "static/image/selectUp.png",
+			"text": "Home"
+
+		}, {
+			"pagePath": "pages/person/person",
+			"iconPath": "static/image/person.png",
+			"selectedIconPath": "static/image/selectPerson.png",
+			"text": "AlibiList"
+		}]
+	}
+}
